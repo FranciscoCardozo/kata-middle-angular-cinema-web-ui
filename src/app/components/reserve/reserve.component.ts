@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SeatsSelectorComponent } from "../seats-selector/seats-selector.component";
+import { ConfirmComponent } from "../confirm/confirm.component";
 
 @Component({
   selector: 'app-reserve',
-  imports: [CommonModule, SeatsSelectorComponent],
+  imports: [CommonModule, SeatsSelectorComponent, ConfirmComponent],
   templateUrl: './reserve.component.html',
   styleUrls: ['./reserve.component.scss']
 })
@@ -16,6 +17,7 @@ export class ReserveComponent implements OnInit {
   availableTimes: { time: string, available: boolean }[] = [];
   selectedTime: string | null = null;
   showSeatsModal: boolean = false;
+  showFormModal: boolean = false;
   selectedSeats: number[] = [];
 
   constructor(private router: Router) {
@@ -45,6 +47,11 @@ export class ReserveComponent implements OnInit {
   onCloseModalEvent(event: boolean){
     console.log('Cerrando modal', event);
     this.showSeatsModal = false;
+  }
+
+  onCloseFormModalEvent(event: boolean){
+    console.log('Cerrando modal', event);
+    this.showFormModal = false;
   }
 
   onSeatsSelected(seats: any): void {

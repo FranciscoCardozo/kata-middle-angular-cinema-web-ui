@@ -30,4 +30,8 @@
     (closeModalEvent)="onCloseModalEvent($event)"
     (seatsSelected)="onSeatsSelected($event)"
     ></app-seats-selector>
+    <app-confirm
+    [showModal]="showFormModal"
+    (closeModalEvent)="onCloseFormModalEvent($event)"
+    ></app-confirm>
 </div>
