@@ -63,3 +63,18 @@ button:hover {
 button.selected {
   background-color: #ee6c4d;
 }
+
+.finalize-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #3d5a80;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.finalize-button:hover {
+  background-color: #98c1d9;
+}

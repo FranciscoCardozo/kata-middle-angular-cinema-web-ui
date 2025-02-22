@@ -15,6 +15,8 @@ export class ReserveComponent implements OnInit {
   selectedDate: Date | null = null;
   availableTimes: { time: string, available: boolean }[] = [];
   selectedTime: string | null = null;
+  showSeatsModal: boolean = false;
+  selectedSeats: number[] = [];
 
   constructor(private router: Router) {
     const navigation = this.router.getCurrentNavigation();
@@ -37,11 +39,18 @@ export class ReserveComponent implements OnInit {
   }
 
   openSeatsSelector(): void {
-    // Lógica para abrir el modal de selección de sillas
+    this.showSeatsModal = true;
   }
 
-  onSeatSelected(seat: number): void {
-    console.log('Silla seleccionada:', seat);
+  onCloseModalEvent(event: boolean){
+    console.log('Cerrando modal', event);
+    this.showSeatsModal = false;
+  }
+
+  onSeatsSelected(seats: any): void {
+    console.log('Sillas seleccionadas:', seats);
+    this.selectedSeats = seats;
+    this.showSeatsModal = false;
   }
 
   generateTimes(): void {
