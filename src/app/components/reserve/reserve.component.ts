@@ -74,6 +74,10 @@ export class ReserveComponent implements OnInit {
     this.selectedDate = date;
   }
 
+  openFormModal(): void {
+    this.showFormModal = true;
+  }
+
   selectSeats(): void {
     // Lógica para seleccionar sillas disponibles
     console.log('Seleccionar sillas disponibles');

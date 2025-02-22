@@ -50,7 +50,6 @@ button:disabled {
 }
 
 .selected-seats {
-  padding-top: 10px;
   display: flex;
   gap: 5px;
 }
@@ -59,6 +58,21 @@ button:disabled {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+}
+
+.reserve-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #3d5a80;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.reserve-button:hover {
+  background-color: #98c1d9;
 }
 
 hr {
