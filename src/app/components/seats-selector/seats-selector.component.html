@@ -1,0 +1,11 @@
+<div class="modal">
+  <div class="modal-content">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <h2>Selecciona tu silla</h2>
+    <div class="seats-container">
+      <button *ngFor="let seat of seats" (click)="selectSeat(seat)">
+        {{ seat }}
+      </button>
+    </div>
+  </div>
+</div>

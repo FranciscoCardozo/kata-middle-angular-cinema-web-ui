@@ -1,0 +1,23 @@
+<div class="reserve-container">
+  <h2>Selecciona una fecha</h2>
+  <div class="dates-list">
+    <div *ngFor="let date of dates" class="date-container">
+      <button (click)="selectDate(date)" [class.selected]="date === selectedDate">
+        {{ date | date: 'fullDate' }}
+      </button>
+      <div *ngIf="date === selectedDate">
+        <h3>Selecciona tus asientos</h3>
+        <button (click)="openSeatsSelector()">Seleccionar Sillas Disponibles</button>
+        <hr class="separator">
+        <h3>Horarios Disponibles</h3>
+        <div class="times-list">
+          <button *ngFor="let time of availableTimes" (click)="selectTime(time)" [disabled]="!time.available">
+            {{ time.time }}
+          </button>
+        </div>
+      </div>
+      <hr>
+    </div>
+  </div>
+  <app-seats-selector (seatSelected)="onSeatSelected($event)"></app-seats-selector>
+</div>

@@ -1,0 +1,66 @@
+// filepath: /c:/Users/Usuario/OneDrive/Documents/Kata Semi-senior/Front/kata-middle-angular-cinema-web-ui/src/app/components/reserve/reserve.component.scss
+.reserve-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+.dates-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.date-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid #555353;
+  border-radius: 5px;
+  padding: 10px
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #3d5a80;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #98c1d9;
+}
+
+button.selected {
+  background-color: #ee6c4d;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.times-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background: #ccc;
+  margin: 20px 0;
+}
+
+.separator {
+  border: 0;
+  height: 1px;
+  background: #ccc;
+  margin: 10px 0; /* Ajusta el ancho para que no toque los bordes */
+  align-self: center;
+}
