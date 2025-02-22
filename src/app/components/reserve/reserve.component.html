@@ -26,6 +26,7 @@
   </div>
   <app-seats-selector
     [showModal]="showSeatsModal"
+    [selection]="selectedSeats"
     (closeModalEvent)="onCloseModalEvent($event)"
     (seatsSelected)="onSeatsSelected($event)"
     ></app-seats-selector>

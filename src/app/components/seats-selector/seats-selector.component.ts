@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, output, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, output, Output } from '@angular/core';
 
 @Component({
   selector: 'app-seats-selector',
@@ -7,12 +7,19 @@ import { Component, EventEmitter, Input, output, Output } from '@angular/core';
   templateUrl: './seats-selector.component.html',
   styleUrls: ['./seats-selector.component.scss']
 })
-export class SeatsSelectorComponent {
+export class SeatsSelectorComponent implements OnInit {
   seats: number[] = Array.from({ length: 20 }, (_, i) => i + 1);
   selectedSeats: number[] = [];
+  @Input() selection: number[] = [];
   @Input() showModal: boolean = false;
   @Output() closeModalEvent = new EventEmitter<boolean>();
   @Output() seatsSelected = new EventEmitter<number[]>();
+
+  ngOnInit(): void {
+      this.selection.forEach(seat => {
+        this.selectSeat(seat);
+      });
+  }
 
   selectSeat(seat: number): void {
     const index = this.selectedSeats.indexOf(seat);
