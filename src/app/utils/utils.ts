@@ -1,4 +1,6 @@
+import { RegistryReservation } from "../interfaces/registryReservation.interface";
 import constants from "./constants";
+import uuid4 from 'uuid4';
 
 export default class Utils{
   public static getDynamoProp(obj: any){
@@ -25,5 +27,22 @@ export default class Utils{
         available: hours.time === reservedHours[0]
       }
     })
+  }
+
+  public static mapConfirmationBody(movieInfo: any, formInfo: any): RegistryReservation{
+    return {
+      uuid: uuid4(),
+      date: new Date().toISOString(),
+      firstName: formInfo.firstName,
+      secondName: formInfo.middleName,
+      surname: formInfo.lastName,
+      secondSurname: formInfo.secondLastName,
+      email: formInfo.email,
+      phone: formInfo.phone,
+      roomId: String(movieInfo.idRoom),
+      movieId: movieInfo.selectedMovie.id,
+      seatsReserved: JSON.stringify(movieInfo.selectedSeats),
+      reservationHour: movieInfo.selectedHour
+    }
   }
 }

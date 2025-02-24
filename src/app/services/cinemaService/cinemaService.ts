@@ -54,6 +54,9 @@ export class CinemaService{
     return this.fetchService.getFetch(
       `${config.apiCinema}${paths.cinemaApi.registryReservation}`,
       'POST',
+      {
+        'Access-Control-Allow-Origin': '*'
+      },
       body
     );
   }

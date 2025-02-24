@@ -1,7 +1,7 @@
 // filepath: /c:/Users/Usuario/OneDrive/Documents/Kata Semi-senior/Front/kata-middle-angular-cinema-web-ui/src/app/components/reserve/reserve.component.ts
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SeatsSelectorComponent } from "../seats-selector/seats-selector.component";
 import { ConfirmComponent } from "../confirm/confirm.component";
 import { CinemaService } from '../../services/cinemaService/cinemaService';
@@ -14,6 +14,7 @@ import Utils from '../../utils/utils';
   styleUrls: ['./reserve.component.scss']
 })
 export class ReserveComponent implements AfterViewInit {
+  selectedMovie: any;
   availableRooms: any[] = [];
   selectedDate: Date | null = null;
   selectedTime: string | null = null;
@@ -23,11 +24,12 @@ export class ReserveComponent implements AfterViewInit {
   reservationsnfo!: any[];
   roomInfo!: any;
   selectedRoom: any;
+  movieInfo: any;
 
   constructor(private router: Router, private cinemaService: CinemaService) {
     const navigation = this.router.getCurrentNavigation();
-    const movie = navigation?.extras.state?.['movie'];
-    console.log(movie);
+    this.selectedMovie = navigation?.extras.state?.['movie'];
+    console.log(this.selectedMovie);
   }
 
   ngAfterViewInit(): void {
@@ -90,8 +92,19 @@ export class ReserveComponent implements AfterViewInit {
   }
 
   selectTime(time: { time: string, available: boolean }): void {
-    if (time.available) {
+    if (!time.available) {
+      console.log(time);
       this.selectedTime = time.time;
+      this.buildMovieInfo();
+    }
+  }
+
+  buildMovieInfo(){
+    this.movieInfo = {
+      ...this.selectedRoom,
+      selectedHour: this.selectedTime,
+      selectedSeats: this.selectedSeats,
+      selectedMovie: this.selectedMovie
     }
   }
 }

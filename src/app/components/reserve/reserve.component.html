@@ -17,7 +17,7 @@
         <hr class="separator">
         <h3>Horarios Disponibles</h3>
         <div class="times-list">
-          <button *ngFor="let time of roomInfo.availableTimes" (click)="selectTime(time)" [disabled]="time.available">
+          <button class="button-time" *ngFor="let time of roomInfo.availableTimes" (click)="selectTime(time)" [disabled]="time.available">
             {{ time.time }}
           </button>
         </div>
@@ -35,6 +35,7 @@
     ></app-seats-selector>
     <app-confirm
     [showModal]="showFormModal"
+    [movieInfo]="movieInfo"
     (closeModalEvent)="onCloseFormModalEvent($event)"
     ></app-confirm>
 </div>

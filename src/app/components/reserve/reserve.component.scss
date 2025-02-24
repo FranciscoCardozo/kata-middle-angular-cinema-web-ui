@@ -61,6 +61,10 @@ button:disabled {
   gap: 10px;
 }
 
+.button-time.selected {
+  background-color: #ee6c4d;
+}
+
 .reserve-button {
   margin-top: 20px;
   padding: 10px 20px;
