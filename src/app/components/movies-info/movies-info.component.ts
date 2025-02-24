@@ -13,16 +13,12 @@ import Utils from '../../utils/utils';
   templateUrl: './movies-info.component.html',
   styleUrl: './movies-info.component.scss'
 })
-export class MoviesInfoComponent implements OnInit, AfterViewInit, AfterContentInit {
+export class MoviesInfoComponent implements AfterViewInit {
 
   constructor(private fetchService: FetchService, private router: Router, private cinemaService: CinemaService) {}
 
   moviesResponse: any;
   moviesInfoObject: MoviesInfo[] = [];
-
-
-  ngOnInit(): void {
-  }
 
   ngAfterViewInit(): void {
 
@@ -46,10 +42,6 @@ export class MoviesInfoComponent implements OnInit, AfterViewInit, AfterContentI
       console.error(error);
     });
     */
-  }
-
-  ngAfterContentInit(): void {
-
   }
 
   onCardClick(position: number){

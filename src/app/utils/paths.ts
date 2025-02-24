@@ -1,6 +1,6 @@
 export default {
   cinemaApi: {
-    getReservations: '/reservations/schedule',
+    getReservations: '/reservations/retrieve',
     registryReservation: '/reservations/schedule',
     getRooms: '/rooms/retrieve',
     registryRoom: '/rooms/registry',

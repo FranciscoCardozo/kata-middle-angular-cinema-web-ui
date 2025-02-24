@@ -10,4 +10,5 @@ export interface RegistryReservation{
     roomId: string;
     movieId: string;
     seatsReserved: string;
+    reservationHour: string;
 }

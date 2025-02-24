@@ -50,6 +50,7 @@ button:disabled {
 }
 
 .selected-seats {
+  padding-top: 5px;
   display: flex;
   gap: 5px;
 }
@@ -87,6 +88,6 @@ hr {
   height: 1px;
   background: #ccc;
   margin: 10px 0;
-  width: calc(100% - 40px); /* Ajusta el ancho para que no toque los bordes */
+  width: calc(100% - 40px);
   align-self: center;
 }

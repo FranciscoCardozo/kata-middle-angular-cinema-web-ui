@@ -43,6 +43,7 @@ export class CinemaService{
   }
 
   public async getReservations(){
+    console.log(`${config.apiCinema}${paths.cinemaApi.getReservations}`);
     return this.fetchService.getFetch(
       `${config.apiCinema}${paths.cinemaApi.getReservations}`,
       'GET',

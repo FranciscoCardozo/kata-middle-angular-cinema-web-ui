@@ -1,9 +1,11 @@
 // filepath: /c:/Users/Usuario/OneDrive/Documents/Kata Semi-senior/Front/kata-middle-angular-cinema-web-ui/src/app/components/reserve/reserve.component.ts
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SeatsSelectorComponent } from "../seats-selector/seats-selector.component";
 import { ConfirmComponent } from "../confirm/confirm.component";
+import { CinemaService } from '../../services/cinemaService/cinemaService';
+import Utils from '../../utils/utils';
 
 @Component({
   selector: 'app-reserve',
@@ -11,36 +13,50 @@ import { ConfirmComponent } from "../confirm/confirm.component";
   templateUrl: './reserve.component.html',
   styleUrls: ['./reserve.component.scss']
 })
-export class ReserveComponent implements OnInit {
-  dates: Date[] = [];
+export class ReserveComponent implements AfterViewInit {
+  availableRooms: any[] = [];
   selectedDate: Date | null = null;
-  availableTimes: { time: string, available: boolean }[] = [];
   selectedTime: string | null = null;
   showSeatsModal: boolean = false;
   showFormModal: boolean = false;
   selectedSeats: number[] = [];
+  reservationsnfo!: any[];
+  roomInfo!: any;
+  selectedRoom: any;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private cinemaService: CinemaService) {
     const navigation = this.router.getCurrentNavigation();
     const movie = navigation?.extras.state?.['movie'];
     console.log(movie);
   }
 
-  ngOnInit(): void {
-    this.generateDates();
-    this.generateTimes();
+  ngAfterViewInit(): void {
+    this.cinemaService.getRooms().then((roomsInfo)=> {
+      this.reservationsnfo = roomsInfo;
+      this.assignRooms();
+    })
   }
 
-  generateDates(): void {
+  assignRooms(): void {
     const today = new Date();
     for (let i = 0; i < 7; i++) {
       const date = new Date();
+      const selectedRoom = Utils.aleatoryRoomAsign(this.reservationsnfo);
+      const reservedHours = Utils.getDynamoProp(this.reservationsnfo[Number(selectedRoom.idRoom)-1]['room_reservate_hours']);
+      const availableTimes = Utils.validAvailableTimes(JSON.parse(reservedHours));
+      const reservedRooms = JSON.parse(Utils.getDynamoProp(this.reservationsnfo[Number(selectedRoom.idRoom)-1]['room_reservations']));
       date.setDate(today.getDate() + i);
-      this.dates.push(date);
+      this.availableRooms.push({
+        ...selectedRoom,
+        date,
+        availableTimes,
+        reservedRooms
+      });
     }
   }
 
-  openSeatsSelector(): void {
+  openSeatsSelector(index: number): void {
+    this.selectedRoom = this.availableRooms[index];
     this.showSeatsModal = true;
   }
 
@@ -58,16 +74,6 @@ export class ReserveComponent implements OnInit {
     console.log('Sillas seleccionadas:', seats);
     this.selectedSeats = seats;
     this.showSeatsModal = false;
-  }
-
-  generateTimes(): void {
-    this.availableTimes = [
-      { time: '10:00 AM', available: true },
-      { time: '1:00 PM', available: false },
-      { time: '4:00 PM', available: true },
-      { time: '7:00 PM', available: true },
-      { time: '10:00 PM', available: false }
-    ];
   }
 
   selectDate(date: Date): void {
