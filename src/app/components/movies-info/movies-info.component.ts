@@ -56,6 +56,7 @@ export class MoviesInfoComponent implements AfterViewInit {
         img: `${config.imgUrl}/${Utils.getDynamoProp(movie.movie_img_path)}`,
         title: Utils.getDynamoProp(movie.movie_title),
         id: Utils.getDynamoProp(movie.movie_id),
+        genre: Utils.getDynamoProp(movie.movie_genre)
       });
     });
   }
