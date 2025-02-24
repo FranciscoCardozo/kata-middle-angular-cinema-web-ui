@@ -4,6 +4,8 @@ import { FetchService } from '../../services/fetchService/fetchService';
 import { config } from '../../config';
 import { MoviesInfo } from '../../interfaces/moviesInfo.interface';
 import { Router } from '@angular/router';
+import { CinemaService } from '../../services/cinemaService/cinemaService';
+import Utils from '../../utils/utils';
 
 @Component({
   selector: 'app-movies-info',
@@ -13,7 +15,7 @@ import { Router } from '@angular/router';
 })
 export class MoviesInfoComponent implements OnInit, AfterViewInit, AfterContentInit {
 
-  constructor(private fetchService: FetchService, private router: Router) {}
+  constructor(private fetchService: FetchService, private router: Router, private cinemaService: CinemaService) {}
 
   moviesResponse: any;
   moviesInfoObject: MoviesInfo[] = [];
@@ -23,10 +25,19 @@ export class MoviesInfoComponent implements OnInit, AfterViewInit, AfterContentI
   }
 
   ngAfterViewInit(): void {
+
+    this.cinemaService.getMovies().then(response => {
+      console.log(response);
+      this.moviesResponse = response;
+      this.mapMoviesObject(response);
+      console.log(this.moviesInfoObject);
+    })
+    /*
     const headers = {
       "Authorization": config.apiToken,
       "accept": "application/json"
     }
+
     this.fetchService.getFetch(config.getMoviInfoUrl, 'get', headers).then(response => {
       this.moviesResponse = response;
       console.log(this.moviesResponse);
@@ -34,6 +45,7 @@ export class MoviesInfoComponent implements OnInit, AfterViewInit, AfterContentI
     }).catch(error => {
       console.error(error);
     });
+    */
   }
 
   ngAfterContentInit(): void {
@@ -49,8 +61,8 @@ export class MoviesInfoComponent implements OnInit, AfterViewInit, AfterContentI
   mapMoviesObject(response:any[]) {
     response.forEach((movie: any) => {
       this.moviesInfoObject.push({
-        img: `${config.imgUrl}/${movie.poster_path}`,
-        title: movie.title
+        img: `${config.imgUrl}/${Utils.getDynamoProp(movie.movie_img_path)}`,
+        title: Utils.getDynamoProp(movie.movie_title),
       });
     });
   }
