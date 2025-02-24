@@ -15,7 +15,8 @@ export class FetchService {
       headers: headers,
       data: body
     };
-
+    axios.defaults.headers.post['Content-Type'] = 'application/json';
+    axios.defaults.headers.common['Authorization'] = 'Bearer tu_token_aqui';
     return axios(options)
       .then(response => response.data)
       .catch(error => {
