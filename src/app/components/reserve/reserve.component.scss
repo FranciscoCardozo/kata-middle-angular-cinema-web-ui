@@ -1,0 +1,97 @@
+.reserve-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+.dates-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.date-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid #555353;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #3d5a80;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #98c1d9;
+}
+
+button.selected {
+  background-color: #ee6c4d;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.seats-selection {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.selected-seats {
+  padding-top: 5px;
+  display: flex;
+  gap: 5px;
+}
+
+.times-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.button-time.selected {
+  background-color: #ee6c4d;
+}
+
+.reserve-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #3d5a80;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.reserve-button:hover {
+  background-color: #98c1d9;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background: #ccc;
+  margin: 20px 0;
+}
+
+.separator {
+  border: 0;
+  height: 1px;
+  background: #ccc;
+  margin: 10px 0;
+  width: calc(100% - 40px);
+  align-self: center;
+}

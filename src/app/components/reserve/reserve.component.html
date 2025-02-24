@@ -1,0 +1,41 @@
+<div class="reserve-container">
+  <h2>Selecciona una fecha</h2>
+  <div class="dates-list">
+    <div *ngFor="let roomInfo of availableRooms; let i = index" class="date-container">
+      <button (click)="selectDate(roomInfo.date)" [class.selected]="roomInfo.date === selectedDate">
+        {{ roomInfo.date | date: 'fullDate' }}
+      </button>
+      <div *ngIf="roomInfo.date === selectedDate">
+        <h3>{{"Sala "+roomInfo.idRoom}}</h3>
+        <h3>Selecciona tus asientos</h3>
+        <button (click)="openSeatsSelector(i)">Seleccionar Sillas Disponibles</button>
+        <div class="selected-seats">
+          <button *ngFor="let seat of selectedSeats" disabled>
+            {{ seat }}
+          </button>
+        </div>
+        <hr class="separator">
+        <h3>Horarios Disponibles</h3>
+        <div class="times-list">
+          <button class="button-time" *ngFor="let time of roomInfo.availableTimes" (click)="selectTime(time)" [disabled]="time.available">
+            {{ time.time }}
+          </button>
+        </div>
+        <button class="reserve-button" (click)="openFormModal()">Reservar</button>
+      </div>
+      <hr>
+    </div>
+  </div>
+  <app-seats-selector
+    [showModal]="showSeatsModal"
+    [selection]="selectedSeats"
+    [roomInfo]="selectedRoom"
+    (closeModalEvent)="onCloseModalEvent($event)"
+    (seatsSelected)="onSeatsSelected($event)"
+    ></app-seats-selector>
+    <app-confirm
+    [showModal]="showFormModal"
+    [movieInfo]="movieInfo"
+    (closeModalEvent)="onCloseFormModalEvent($event)"
+    ></app-confirm>
+</div>

@@ -1,0 +1,14 @@
+<div class="movies-container">
+  <h1 class="title">estrenos / cartelera</h1>
+  <div class="movie-row" *ngFor="let row of moviesInfoObject | slice:0:moviesInfoObject.length; let i = index">
+    <div class="movie-card-container" *ngIf="i % 4 === 0">
+      <div *ngFor="let movie of moviesInfoObject.slice(i, i + 4); let j = index">
+        <div class="movie-card" (click)="onCardClick(i + j)">
+          <img class="image-card" [src]="movie.img" alt="{{ movie.title }}">
+          <h3>{{ movie.title }}</h3>
+          <h3>{{movie.genre}}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<div class="modal" *ngIf="showModal">
+  <div class="modal-content">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <h2>Selecciona tus sillas</h2>
+    <div class="seats-container">
+      <button *ngFor="let seat of seats" (click)="selectSeat(seat)" [class.selected]="selectedSeats.includes(seat)">
+        {{ seat }}
+      </button>
+    </div>
+    <button class="finalize-button" (click)="finalizeSelection()">Finalizar Selección</button>
+  </div>
+</div>
